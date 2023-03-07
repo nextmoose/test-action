@@ -4,8 +4,20 @@
       shellHook =
         let
           dollar = expression : builtins.concatStringsSep "" [ "$" "{" expression "}" ] ;
+	  print =
+	    variables :
+	      let
+	        mapper =
+		  variable :
+		    ''
+		      ${ pkgs.coreutils }/bin/echo &&
+		      ${ pkgs.coreutils }/bin/echo ${ variable } &&
+		      ${ pkgs.coreutils }/bin/echo ${ dollar "variable" }
+	            '' ;
+		in builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ;
           in
             ''
+	      ${ print "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" } &&
               WORK_DIR=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
               cd ${ dollar "WORK_DIR" } &&
               ${ pkgs.git }/bin/git init &&
@@ -20,7 +32,7 @@
               fi &&
               if [ ${ dollar "TEST_POSTULATE" } == true ]
               then
-                TEST=${ dollar "GITHUB_WORKSPACE_REF" }
+                TEST=${ dollar "WORKSPACE" }
               elif [ -z "${ dollar "IMPLEMENTATION_REV" }" ]
               then
                 TEST=${ dollar "TEST_URL" }

@@ -42,3 +42,4 @@ runs:
         TEST_DEFECT: ${{ inputs.test-defect }}
         POSTULATE: ${{ inputs.postulate }}
         ACTION_PATH: ${{ github.action_path }}
+	WORKSPACE: $GITHUB_WORKSPACE_REF
