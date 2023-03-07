@@ -17,7 +17,7 @@
 		in builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ;
           in
             ''
-	      ${ print "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" } &&
+	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" ] } &&
               WORK_DIR=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
               cd ${ dollar "WORK_DIR" } &&
               ${ pkgs.git }/bin/git init &&
