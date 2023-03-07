@@ -48,7 +48,7 @@
               if [ ${ dollar "POSTULATE" } == true ]
               then
                 export EXPECTED_DEFECT="$( ${ pkgs.nix }/bin/nix develop --command check "${ dollar "TEST_DEFECT" }" )" &&
-		export OBSERVED_DEFECT="$( ${ dollar "TEST_DEFECT" } )" &&
+		export OBSERVED_DEFECT="${ dollar "TEST_DEFECT" }" &&
 		${ print [ "OBSERVED_DEFECT" "EXPECTED_DEFECT" ] }/bin/print &&
 		if [ "${ dollar "OBSERVED_DEFECT" }" == "${ dollar "EXPECTED_DEFECT" }" ]
 		then
@@ -57,6 +57,6 @@
 		  ${ pkgs.coreutils }/bin/echo FAILED &&
 		  exit 64
 		fi
-              fi
+              fi	
             '' ;
     }
