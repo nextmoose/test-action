@@ -11,7 +11,7 @@
               ${ pkgs.git }/bin/git init &&
               ${ pkgs.git }/bin/git config user.name "No One" &&
               ${ pkgs.git }/bin/git config user.email "no@one" &&
-              ${ pkgs.nix }/bin/nix flake --init &&
+              ${ pkgs.nix }/bin/nix flake init &&
               if [ ${ dollar "IMPLEMENTATION_POSTULATE" } == true ]
               then
                 IMPLEMENTATION=${ dollar "GITHUB_WORKSPACE_REF" }
