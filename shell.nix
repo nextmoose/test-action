@@ -12,9 +12,10 @@
 		    ''
 		      ${ pkgs.coreutils }/bin/echo &&
 		      ${ pkgs.coreutils }/bin/echo ${ variable } &&
+		      ${ pkgs.coreutils }/bin/echo "=" &&
 		      ${ pkgs.coreutils }/bin/echo ${ dollar variable }
 	            '' ;
-		in builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ;
+		in pkgs.writeShellScript "print" ( builtins.concatStringsSep "&& \n" ( builtins.map mapper variables ) ) ;
           in
             ''
 	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" ] } &&
@@ -39,6 +40,7 @@
               else
                 TEST=${ dollar "TEST_URL" }?rev=${ dollar "TEST_REV" }
               fi &&
+	      ${ print [ "IMPLEMENTATION" "TEST" ] } &&
               ${ pkgs.gnused }/bin/sed \
                 -e "s#\${ dollar "IMPLEMENTATION" }#${ dollar "IMPLEMENTATION" }#" \
                 -e "s#\${ dollar "TEST" }#${ dollar "TEST" }#" \
