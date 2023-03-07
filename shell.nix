@@ -38,7 +38,7 @@
               else
                 TEST=${ dollar "TEST_URL" }?rev=${ dollar "TEST_REV" }
               fi &&
-	      ${ print [ "IMPLEMENTATION" "TEST" ] } &&
+	      ${ pkgs.coreutils }/bin/echo &&
               ${ pkgs.gnused }/bin/sed \
                 -e "s#\${ dollar "IMPLEMENTATION" }#${ dollar "IMPLEMENTATION" }#" \
                 -e "s#\${ dollar "TEST" }#${ dollar "TEST" }#" \
