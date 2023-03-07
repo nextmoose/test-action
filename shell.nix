@@ -25,13 +25,13 @@
               ${ pkgs.nix }/bin/nix flake init &&
               if [ ${ dollar "IMPLEMENTATION_POSTULATE" } == true ]
               then
-                IMPLEMENTATION=${ dollar "GITHUB_WORKSPACE_REF" }
+                export IMPLEMENTATION=${ dollar "GITHUB_WORKSPACE_REF" }
               else
-                IMPLEMENTATION=${ dollar "IMPLEMENTATION_URL" }
+                export IMPLEMENTATION=${ dollar "IMPLEMENTATION_URL" }
               fi &&
               if [ ${ dollar "TEST_POSTULATE" } == true ]
               then
-                TEST=${ dollar "WORKSPACE" }
+                export TEST=${ dollar "WORKSPACE" }
               elif [ -z "${ dollar "IMPLEMENTATION_REV" }" ]
               then
                 TEST=${ dollar "TEST_URL" }
