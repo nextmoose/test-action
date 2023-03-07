@@ -7,5 +7,5 @@
         tester.url = "github:nextmoose/tester?rev=e3cdd297e3cb2ba918111ea0ecd627defd2464ca" ;
       } ;
     outputs =
-      { flake-utils , implementation , test , tester } : flake-utils.lib.eachDefaultSystem ( system : builtins.getAttr system tester.lib implementation test ) ;
+      { flake-utils , implementation , self , test , tester } : flake-utils.lib.eachDefaultSystem ( system : builtins.getAttr system tester.lib implementation test ) ;
   }
