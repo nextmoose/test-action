@@ -10,12 +10,12 @@
 	        mapper =
 		  variable :
 		    ''
-		      ${ pkgs.coreutils }/bin/echo -en "\n${ variable }=\"${ dollar variable }\""
+		      ${ pkgs.coreutils }/bin/echo -en "\n\n${ variable }=\"${ dollar variable }\"\n\n"
 	            '' ;
 		in pkgs.writeShellScriptBin "print" ( builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ) ;
           in
             ''
-	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "GITHUB_WORKSPACE_REF" ] }/bin/print &&
+	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "GITHUB_WORKSPACE" ] }/bin/print &&
               WORK_DIR=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
               cd ${ dollar "WORK_DIR" } &&
               ${ pkgs.git }/bin/git init &&
@@ -24,13 +24,13 @@
               ${ pkgs.nix }/bin/nix flake init &&
               if [ ${ dollar "IMPLEMENTATION_POSTULATE" } == true ]
               then
-                export IMPLEMENTATION=${ dollar "GITHUB_WORKSPACE_REF" }
+                export IMPLEMENTATION=${ dollar "GITHUB_WORKSPACE" }
               else
                 export IMPLEMENTATION=${ dollar "IMPLEMENTATION_URL" }
               fi &&
               if [ ${ dollar "TEST_POSTULATE" } == true ]
               then
-                export TEST=${ dollar "GITHUB_WORKSPACE_REF" }
+                export TEST=${ dollar "GITHUB_WORKSPACE" }
               elif [ -z "${ dollar "IMPLEMENTATION_REV" }" ]
               then
                 TEST=${ dollar "TEST_URL" }
