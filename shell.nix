@@ -12,7 +12,7 @@
 		    ''
 		      ${ pkgs.coreutils }/bin/echo &&
 		      ${ pkgs.coreutils }/bin/echo ${ variable } &&
-		      ${ pkgs.coreutils }/bin/echo ${ dollar "variable" }
+		      ${ pkgs.coreutils }/bin/echo ${ dollar variable }
 	            '' ;
 		in builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ;
           in
