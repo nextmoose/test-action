@@ -11,11 +11,9 @@
 		  variable :
 		    ''
 		      ${ pkgs.coreutils }/bin/echo &&
-		      ${ pkgs.coreutils }/bin/echo ${ variable } &&
-		      ${ pkgs.coreutils }/bin/echo "=" &&
-		      ${ pkgs.coreutils }/bin/echo ${ dollar variable }
+		      ${ pkgs.coreutils }/bin/echo "${ variable }=${ dollar variable }"
 	            '' ;
-		in pkgs.writeShellScript "print" ( builtins.concatStringsSep "&& \n" ( builtins.map mapper variables ) ) ;
+		in pkgs.writeShellScript "print" ( builtins.concatStringsSep "&&\n" ( builtins.map mapper variables ) ) ;
           in
             ''
 	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" ] } &&
