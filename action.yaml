@@ -31,7 +31,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: ${{ github.action_path }}/check.sh
+    - run: git-shell ${{ github.action_path }}/shell.nix
       shell: bash
       env:
         IMPLEMENTATION_URL: nix-shell ${{ inputs.implementation-url }}/shell.nix
