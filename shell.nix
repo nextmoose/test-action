@@ -13,7 +13,7 @@
 		      ${ pkgs.coreutils }/bin/echo &&
 		      ${ pkgs.coreutils }/bin/echo "${ variable }=${ dollar variable }"
 	            '' ;
-		in pkgs.writeShellScriptBin "print" ( builtins.concatStringsSep "&&\n" ( builtins.map mapper variables ) ) ;
+		in pkgs.writeShellScriptBin "print" ( builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ) ;
           in
             ''
 	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" ] }/bin/print &&
