@@ -34,7 +34,7 @@ runs:
     - run: nix-shell ${{ github.action_path }}/shell.nix
       shell: bash
       env:
-        IMPLEMENTATION_URL: nix-shell ${{ inputs.implementation-url }}/shell.nix
+        IMPLEMENTATION_URL: ${{ inputs.implementation-url }}
         IMPLEMENTATION_POSTULATE: ${{ inputs.implementation-postulate }}
         TEST_URL: ${{ inputs.test-url }}
         TEST_POSTULATE: ${{ inputs.test-postulate }}
