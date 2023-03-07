@@ -50,6 +50,7 @@
               then
                 export EXPECTED_DEFECT="$( ${ pkgs.nix }/bin/nix develop --command check "${ dollar "TEST_DEFECT" }" )" &&
 		export OBSERVED_DEFECT="$( ${ dollar "TEST_DEFECT" } )" &&
+		${ print [ "OBSERVED_DEFECT" "EXPECTED_DEFECT" ] } &&
 		if [ "${ dollar "OBSERVED_DEFECT" }" == "${ dollar "EXPECTED_DEFECT" }" ]
 		then
 		  ${ pkgs.coreutils }/bin/echo PASSED
