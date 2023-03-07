@@ -11,7 +11,7 @@
 		  variable :
 		    ''
 		      ${ pkgs.coreutils }/bin/echo &&
-		      ${ pkgs.coreutils }/bin/echo "${ variable }=${ dollar variable }"
+		      ${ pkgs.coreutils }/bin/echo '${ variable }="${ dollar variable }"'
 	            '' ;
 		in pkgs.writeShellScriptBin "print" ( builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ) ;
           in
@@ -48,7 +48,15 @@
               ${ pkgs.git }/bin/git commit --all --allow-empty-message --message "" &&
               if [ ${ dollar "POSTULATE" } == true ]
               then
-                ${ pkgs.nix }/bin/nix develop --command check "${ dollar "TEST_DEFECT" }"
+                export EXPECTED_DEFECT="$( ${ pkgs.nix }/bin/nix develop --command check "${ dollar "TEST_DEFECT" }" )" &&
+		export OBSERVED_DEFECT="$( ${ dollar "TEST_DEFECT" } )" &&
+		if [ "${ dollar "OBSERVED_DEFECT" }" == "${ dollar "EXPECTED_DEFECT" }" ]
+		then
+		  ${ pkgs.coreutils }/bin/echo PASSED
+		else
+		  ${ pkgs.coreutils }/bin/echo FAILED &&
+		  exit 64
+		fi
               fi
             '' ;
     }
