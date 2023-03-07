@@ -16,7 +16,7 @@
 		in pkgs.writeShellScriptBin "print" ( builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ) ;
           in
             ''
-	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" ] }/bin/print &&
+	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "GITHUB_WORKSPACE_REF" ] }/bin/print &&
               WORK_DIR=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
               cd ${ dollar "WORK_DIR" } &&
               ${ pkgs.git }/bin/git init &&
@@ -31,7 +31,7 @@
               fi &&
               if [ ${ dollar "TEST_POSTULATE" } == true ]
               then
-                export TEST=${ dollar "WORKSPACE" }
+                export TEST=${ dollar "GITHUB_WORKSPACE_REF" }
               elif [ -z "${ dollar "IMPLEMENTATION_REV" }" ]
               then
                 TEST=${ dollar "TEST_URL" }
