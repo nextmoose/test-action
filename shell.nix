@@ -13,10 +13,10 @@
 		      ${ pkgs.coreutils }/bin/echo &&
 		      ${ pkgs.coreutils }/bin/echo "${ variable }=${ dollar variable }"
 	            '' ;
-		in pkgs.writeShellScript "print" ( builtins.concatStringsSep "&&\n" ( builtins.map mapper variables ) ) ;
+		in pkgs.writeShellScriptBin "print" ( builtins.concatStringsSep "&&\n" ( builtins.map mapper variables ) ) ;
           in
             ''
-	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" ] } &&
+	      ${ print [ "IMPLEMENTATION_URL" "IMPLEMENTATION_POSTULATE" "TEST_URL" "TEST_POSTULATE" "TEST_REV" "TEST_DEFECT" "POSTULATE" "WORKSPACE" ] }/bin/print &&
               WORK_DIR=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
               cd ${ dollar "WORK_DIR" } &&
               ${ pkgs.git }/bin/git init &&
@@ -38,7 +38,7 @@
               else
                 TEST=${ dollar "TEST_URL" }?rev=${ dollar "TEST_REV" }
               fi &&
-	      ${ pkgs.coreutils }/bin/echo &&
+	      ${ print [ "IMPLEMENTATION" "TEST" ] }/bin/print &&
               ${ pkgs.gnused }/bin/sed \
                 -e "s#\${ dollar "IMPLEMENTATION" }#${ dollar "IMPLEMENTATION" }#" \
                 -e "s#\${ dollar "TEST" }#${ dollar "TEST" }#" \
