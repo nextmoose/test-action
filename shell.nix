@@ -10,8 +10,7 @@
 	        mapper =
 		  variable :
 		    ''
-		      ${ pkgs.coreutils }/bin/echo &&
-		      ${ pkgs.coreutils }/bin/echo '${ variable }="${ dollar variable }"'
+		      ${ pkgs.coreutils }/bin/echo -en "\n${ variable }=\"${ dollar variable }\""
 	            '' ;
 		in pkgs.writeShellScriptBin "print" ( builtins.concatStringsSep "\n" ( builtins.map mapper variables ) ) ;
           in
