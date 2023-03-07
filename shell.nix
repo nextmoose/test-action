@@ -31,7 +31,7 @@
                 -e "s#\${ dollar "IMPLEMENTATION" }#${ dollar "IMPLEMENTATION" }#" \
                 -e "s#\${ dollar "TEST" }#${ dollar "TEST" }#" \
                 -e "wflake.nix" \
-                "${ACTION_PATH}/flake.nix" &&
+                "${ dollar "ACTION_PATH" }/flake.nix" &&
               ${ pkgs.git }/bin/git add flake.nix &&
               ${ pkgs.git }/bin/git commit --all --allow-empty-message --message "" &&
               if [ ${ dollar "POSTULATE" } == true ]
