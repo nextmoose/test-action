@@ -5,7 +5,7 @@
         implementation.url = "${IMPLEMENTATION}" ;
         nixpkgs.url = "github:nixos/nixpkgs?rev=57eac89459226f3ec743ffa6bbbc1042f5836843" ;
         test.url = "${TEST}" ;
-        tester.url = "github:nextmoose/tester?rev=c076523d61e8b55bb1652e19efe1d2a09e1062ce" ;
+        tester.url = "github:nextmoose/tester?rev=789740c84a3fd08666cdf66b5175d45fcd9067a7" ;
       } ;
     outputs =
       { flake-utils , implementation , self , test , tester } :
