@@ -13,7 +13,7 @@
           (
             system :
               let
-                pkgs = builtins.getAttr system nixpkgs.legacySystems ;
+                pkgs = builtins.getAttr system nixpkgs.legacyPackages ;
                 in
                   {
                     devShell =
