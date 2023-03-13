@@ -8,7 +8,7 @@
         tester.url = "github:nextmoose/tester?rev=789740c84a3fd08666cdf66b5175d45fcd9067a7" ;
       } ;
     outputs =
-      { flake-utils , implementation , self , test , tester } :
+      { flake-utils , implementation , nixpkgs , self , test , tester } :
         flake-utils.lib.eachDefaultSystem
           (
             system :
