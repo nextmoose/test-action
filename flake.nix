@@ -18,7 +18,7 @@
                   {
                     devShell =
                       pkgs.mkShell
-                        { buildIncludes = [ ( pkgs.writeShellScriptBin "check" "${ pkgs.coreutils }/bin/echo ${ builtins.getAttr system tester.lib implementation test }" ) ] ; }
+                        { buildIncludes = [ ( pkgs.writeShellScriptBin "check" "${ pkgs.coreutils }/bin/echo ${ builtins.getAttr system tester.lib implementation test }" ) ] ; } ;
                   }
           ) ;
       }
